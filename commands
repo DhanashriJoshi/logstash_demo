@@ -1,0 +1,22 @@
+Filebeat
+bhavesh@bhavesh:/etc/filebeat$ sudo filebeat -e
+
+Start logstash
+sudo service logstash restart
+bhavesh@bhavesh:/usr/share/logstash$./bin/logstash -f your-file.conf
+
+Kafka
+Start zookeepr
+bhavesh@bhavesh:/opt/kafka$ sudo bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Kafka server
+bhavesh@bhavesh:/opt/kafka_2.12-2.3.0$ sudo bin/kafka-server-start.sh config/server.properties
+
+Producer
+bhavesh@bhavesh:/opt/kafka_2.12-2.3.0$ sudo bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+Consumer
+bhavesh@bhavesh:/opt/kafka_2.12-2.3.0$ sudo bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test
+
+Generate self signed certificate
+openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/ljack-test.key -out /etc/ssl/ljack-test.pub -nodes -days 90
